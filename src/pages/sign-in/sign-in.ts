@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RestProvider } from  './../../providers/rest/rest';
-import { User } from  '../../app/models/user.model';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -12,7 +12,7 @@ import { User } from  '../../app/models/user.model';
 export class SignInPage {
 
   userForm: FormGroup;
-  private users: User[] = [];
+  submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
@@ -20,26 +20,27 @@ export class SignInPage {
               public  restProvider: RestProvider) {
 
     this.userForm = this.formBuilder.group({
-      name: [''],
-      email: [''],
-      password: ['']
+      name: ['', Validators.compose([Validators.required, Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }  
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignInPage');
   }
 
   onCreateUser() {
-    this.restProvider
-    .createUser(this.userForm.value)
-    
-    .subscribe(    
-      (newUser) => {
-        this.users = this.users.concat(newUser);
-        console.log(this.users);
-      }
-    );
+    this.submitAttempt = true;
+    if (this.userForm.valid) {
+      this.restProvider
+      .createUser(this.userForm.value)
+      
+      .subscribe(    
+        (newUser) => {
+          this.navCtrl.push(HomePage);
+        }
+      );
+    }
   }
 
 }
