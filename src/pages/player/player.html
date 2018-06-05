@@ -10,7 +10,9 @@
 <ion-content padding>
   <h2 text-center>{{ team.name }}</h2>
 
-  <ion-list>
+  <ion-list *ngIf="players.length > 0">
     <ion-item *ngFor="let player of players"> {{ player.name }} - Camisa {{ player.jerseyNumber || 'N/A' }} </ion-item>
   </ion-list>
+
+  <h3 text-center *ngIf="players.length == 0">Nenhum jogador registrado!</h3>
 </ion-content>

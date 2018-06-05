@@ -2,7 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from  'rxjs/Observable';
 import { Competitions } from  '../../app/models/competitions.model';
-import { Team } from  '../../app/models/team.model';
 
 import  'rxjs/add/operator/catch';
 import  'rxjs/add/operator/map';
@@ -32,20 +31,20 @@ export class FootballRestProvider {
       .map(res => res as Competitions[] || []);
   }
 
-  getTeams(compId): Observable<Team[]> {
+  getTeams(compId): Observable<any> {
     const headers = new HttpHeaders()
             .set('X-Auth-Token', this.token);
             
     return this.http.get(this.baseUrl + 'competitions/' + compId + '/teams', {headers})
-      .map(res => res as Team[] || []);
+      .map(res => res as any[] || []);
   }
 
-  getPlayers(teamId): Observable<Team[]> {
+  getPlayers(teamId): Observable<any> {
     const headers = new HttpHeaders()
             .set('X-Auth-Token', this.token);
             
     return this.http.get(this.baseUrl + 'teams/' + teamId + '/players', {headers})
-      .map(res => res as Team[] || []);
+      .map(res => res as any[] || []);
   }
 
 }
