@@ -1,21 +1,20 @@
-<ion-content padding>
+<ion-header>
+  <ion-navbar color="dark">
+    <ion-title>Campeonatos - {{ year }}</ion-title>
+  </ion-navbar>
+</ion-header>
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let user of users">
-      <ion-item>
-        <h2>{{ user.name }}</h2>
-      </ion-item>
-      <ion-item-options side="right">
-        <button ion-button color="primary">
-          <ion-icon name="text"></ion-icon>
-          Deletar
-        </button>
-        <button ion-button color="secondary">
-          <ion-icon name="call"></ion-icon>
-          Editar
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+<ion-content class="home-content" padding>
+
+  <ion-list inset>
+    <button ion-item *ngFor="let comp of competitions" (click)="openCompetition(comp)">
+      {{ comp.caption }}
+    </button> 
   </ion-list>
 
+  <ion-footer>
+    <ion-toolbar>
+      <button ion-button full (click)="logout()">Deslogar</button>
+    </ion-toolbar>
+  </ion-footer>
 </ion-content>

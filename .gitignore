@@ -70,3 +70,5 @@ scripts/build/e2e-generated-tsconfig.json
 *.css.ts
 
 stats.json
+
+src/app/config/

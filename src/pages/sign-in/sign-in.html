@@ -1,41 +1,49 @@
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="dark">
     <ion-title>Novo Usuário</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="sign-in-content" padding>
 
   <form [formGroup]="userForm">
+    <div class="register-box">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-input placeholder="Nome" formControlName="name" type="text"></ion-input>
+            </ion-item>
+            <div class="color-alert" *ngIf="!userForm.controls.name.valid  && (userForm.controls.name.dirty || submitAttempt)">
+                <p>Nome obrigatório!</p>
+            </div>
 
-    <ion-item>
-      <ion-label floating>Nome</ion-label>
-      <ion-input formControlName="name" type="text"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.name.valid  && (userForm.controls.name.dirty || submitAttempt)">
-        <p>Nome obrigatório!</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>E-mail</ion-label>
-      <ion-input formControlName="email" type="email"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.email.valid  && (userForm.controls.email.dirty || submitAttempt)">
-        <p>E-mail obrigatório!</p>
-    </ion-item>
+            <ion-item>
+              <ion-input placeholder="E-mail" formControlName="email" type="email"></ion-input>
+            </ion-item>
+            <div class="color-alert" *ngIf="!userForm.controls.email.valid  && (userForm.controls.email.dirty || submitAttempt)">
+                <p>E-mail obrigatório!</p>
+            </div>
+            
+            <ion-item>
+              <ion-input placeholder="Senha" formControlName="password" type="password"></ion-input>
+            </ion-item>
+            <div class="color-alert" *ngIf="!userForm.controls.password.valid && submitAttempt">
+                <p>Senha obrigatório!</p>
+            </div>
+          </ion-list>
+        </ion-col>
+      </ion-row>
     
-    <ion-item>
-      <ion-label floating>Senha</ion-label>
-      <ion-input formControlName="password" type="password"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!userForm.controls.password.valid && submitAttempt">
-        <p>Senha obrigatório!</p>
-    </ion-item>
-    
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn" full type="submit" (click)="onCreateUser()">Criar Usuário</button>
+        </ion-col>
+      </ion-row>
+    </div> 
   </form>
-  <button ion-button block color="secondary" (click)="onCreateUser()">Criar Usuário</button>
 
 </ion-content>

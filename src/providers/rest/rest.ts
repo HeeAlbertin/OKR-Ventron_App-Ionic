@@ -9,7 +9,7 @@ import  'rxjs/add/operator/map';
 
 @Injectable()
 export class RestProvider {
-  baseUrl:string = "http://localhost:8000";
+  baseUrl:string = "http://localhost:8000"; // Meu server local NodeJS
 
   constructor(public http: HttpClient) {
   }

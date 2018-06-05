@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Loading, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Loading, LoadingController, ViewController } from 'ionic-angular';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RestProvider } from  './../../providers/rest/rest';
 import { HomePage } from '../home/home';
 import { SignInPage } from '../sign-in/sign-in';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -21,11 +22,17 @@ export class LoginPage {
               public  restProvider: RestProvider,
               private formBuilder: FormBuilder,
               public loadingCtrl: LoadingController,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              private storage: Storage,
+              private viewCtrl: ViewController) {
     this.loginForm = this.formBuilder.group({
       email: [''],
       password: ['']
     });
+  }
+
+  ionViewDidLoad() {
+    this.viewCtrl.showBackButton(false);
   }
 
   presentAlert() {
@@ -58,6 +65,7 @@ export class LoginPage {
           response => {
             this.loading.dismiss();
             if (response.email) {
+              this.storage.set('email', response.email);
               this.navCtrl.push(HomePage);
             } else {
               this.presentAlert();
