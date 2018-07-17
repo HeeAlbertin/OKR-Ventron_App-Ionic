@@ -2,4 +2,15 @@ page-competition {
     .item-ios ion-thumbnail ion-img, .item-ios ion-thumbnail img {
         width: 100px;
     }
+    .item-md ion-thumbnail {
+        min-width:  0 !important; 
+        min-height: 0 !important;
+    }
+
+    .item-md ion-thumbnail ion-img,
+    .item-md ion-thumbnail img {
+        width: 90px !important;
+        height: 62px !important;
+        border: solid 1px #ccc;
+    }
 }

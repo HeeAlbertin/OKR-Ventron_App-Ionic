@@ -34,9 +34,9 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #26547C,
-  secondary:  #031A6B,
-  button:     #192E78
+  primary:    #337c26,
+  secondary:  #036b37,
+  button:     #14a563
 );
 
 
@@ -84,3 +84,10 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+@font-face {
+  font-family: 'Old-Sport';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/oldSport.ttf');
+}

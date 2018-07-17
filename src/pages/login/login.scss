@@ -1,5 +1,4 @@
 page-login {
- 
     .login-content {
       background: color($colors, primary, base);
    
@@ -48,6 +47,17 @@ page-login {
        .register-btn {
          color: #ffffff;
          font-size: 0.8em;
+       }
+
+       .main-logo {
+          font-family: 'Old-Sport' !important;
+          color: #fff;
+          font-size: 2.5em;
+       }
+
+       .sub-logo {
+          text-align: center;
+          color: #fff;
        }
     }
    
